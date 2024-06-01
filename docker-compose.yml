@@ -4,7 +4,7 @@ services:
   web:
     image: php:8.2-apache
     volumes:
-      - ./app:/var/www/html/
+      - ./project:/var/www/html/
     #user: web:web
     ports:
       - 80:80
