@@ -1,4 +1,5 @@
 <?php
+require_once '../SocNet/config/config.php';
 
 class Database {
     private $host = DB_HOST;
