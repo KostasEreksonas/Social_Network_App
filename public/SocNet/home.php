@@ -12,6 +12,10 @@ echo 'Hello, ' . $_SESSION["username"];
 </head>
 <body>
 <form action="home.php" method="POST">
+    <input type="submit" name="messages" value="Messages">
+    <input type="submit" name="friends" value="Friends">
+    <input type="submit" name="profile" value="Profile">
+    <input type="submit" name="posts" value="Posts">
     <input type="submit" name="logout" value="Logout">
 </form>
 </body>
