@@ -9,7 +9,6 @@ if (isset($_POST["login_button"])) {
     $user = new User();
     try {
         $user->login($email, $password);
-
     } catch (Exception $e) {
         echo 'Error: ' . $e->getMessage() . '<br>';
     }

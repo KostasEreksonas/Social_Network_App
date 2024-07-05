@@ -8,7 +8,7 @@ echo 'This is place for your posts, '. $_SESSION['username'];
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Messages</title>
+    <title>Posts</title>
 </head>
 <body>
 <form action="posts.php" method="POST">

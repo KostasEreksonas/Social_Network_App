@@ -8,7 +8,7 @@ echo 'This is place for your friends list, '. $_SESSION['username'];
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Messages</title>
+    <title>Friends</title>
 </head>
 <body>
 <form action="friends.php" method="POST">
