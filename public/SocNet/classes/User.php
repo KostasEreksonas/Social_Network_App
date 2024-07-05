@@ -69,12 +69,28 @@ class User {
         return password_hash($password, PASSWORD_DEFAULT);
     }
 
-    public function registerUser($fname, $lname, $email, $password) : void
+    public function createUsername($fname, $lname) : string
+    {
+        /*
+         * Create an username for registering user
+         */
+        $username = $fname . '_' . $lname;
+        // Check if username already exists
+        $this->db->query("SELECT * FROM users WHERE username = '$username'");
+        $this->db->execute();
+        $count = $this->db->rowCount();
+        if ($count > 0) {
+            $username = $fname . '_' . $lname . '_' . $count;
+        }
+        return $username;
+    }
+
+    public function registerUser($fname, $lname, $username, $email, $password) : void
     {
         /*
          * Registers an user to the database
          */
-        $sql = "INSERT INTO `users` VALUES (NULL, '$fname', '$lname', '$email', '$password', DEFAULT)";
+        $sql = "INSERT INTO `users` VALUES (NULL, '$fname', '$lname', '$username', '$email', '$password', DEFAULT)";
         $this->db->query($sql);
         try {
             $this->db->execute();
@@ -89,18 +105,21 @@ class User {
         /*
          * Login user to the application
          */
-        $sql = "SELECT password FROM users WHERE email = '$email'";
+        $sql = "SELECT username, password FROM users WHERE email = '$email'";
         $this->db->query($sql);
         $result = $this->db->resultSet();
         if ($this->db->rowCount() == 0) {
             throw new Exception('No such user exists<br>');
         } else {
             foreach ($result as $row) {
+                $username = $row->username;
                 $dbPassword = $row->password;
             }
             if (!password_verify($password, $dbPassword)) {
                 throw new Exception("Invalid username and/or password.<br>");
             } else {
+                $_SESSION['username'] = $username;
+                $_SESSION['email'] = $email;
                 header('Location: home.php');
             }
         }
