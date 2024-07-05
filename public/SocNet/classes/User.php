@@ -15,7 +15,6 @@ class User {
     {
         /*
          * Validate email format
-         * Validate if email confirmation == email
          */
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new Exception("Invalid email address format<br>");
@@ -24,6 +23,9 @@ class User {
 
     public function confirmEmail($email, $email_confirm) : void
     {
+        /*
+         * Confirm if emails match
+         */
         if ($email !== $email_confirm) {
             throw new Exception("Emails do not match<br>");
         }
@@ -47,7 +49,6 @@ class User {
     {
         /*
          * Validate password length
-         * Validate if password confirmation == password
          */
         if (strlen($password) < 5 || strlen($password) > 32)  {
             throw new Exception("Passwords must be between 5 and 32 characters<br>");
@@ -56,6 +57,9 @@ class User {
 
     public function confirmPassword($password, $password_confirm) : void
     {
+        /*
+         * Confirm if passwords match
+         */
         if ($password !== $password_confirm) {
             throw new Exception("Passwords do not match<br>");
         }

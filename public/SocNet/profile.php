@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once("handlers/profile_handler.php");
-echo 'This is place for your profile, '. $_SESSION['username'];
 ?>
 
 <!DOCTYPE html>
@@ -57,17 +56,17 @@ echo 'This is place for your profile, '. $_SESSION['username'];
 <h1>Update User Information</h1>
 <form action="profile.php" method="POST">
     <label for="fname">Update first name: </label><br>
-    <input type="text" id="fname" name="reg_fname" placeholder="First Name" required><br>
+    <input type="text" id="fname" name="upd_fname" placeholder="First Name"><br>
     <label for="lname">Update last name: </label><br>
-    <input type="text" id="lname" name="reg_lname" placeholder="Last Name" required><br>
+    <input type="text" id="lname" name="upd_lname" placeholder="Last Name"><br>
     <label for="email">New email: </label><br>
-    <input type="email" id="email" name="reg_email" placeholder="Email" required><br>
+    <input type="email" id="email" name="upd_email" placeholder="Email"><br>
     <label for="email_repeat">Confirm new email: </label><br>
-    <input type="email" id="email_repeat" name="reg_email_confirm" placeholder="Confirm Email" required><br>
+    <input type="email" id="email_repeat" name="upd_email_confirm" placeholder="Confirm Email"><br>
     <label for="password">New password: </label><br>
-    <input type="password" id="password" name="reg_password" placeholder="Password" required><br>
+    <input type="password" id="password" name="upd_password" placeholder="Password"><br>
     <label for="password_repeat">Confirm new password: </label><br>
-    <input type="password" id="password_repeat" name="reg_password_confirm" placeholder="Confirm Password" required><br>
+    <input type="password" id="password_repeat" name="upd_password_confirm" placeholder="Confirm Password"><br>
     <input type="submit" name="update_button" value="Update">
     <input type="submit" name="deactivate" value="Deactivate Profile">
     <input type="submit" name="delete" value="Delete Profile">
