@@ -23,43 +23,47 @@ if (isset($_POST["logout"])) {
     $profile = new Profile();
     // Count exceptions
     $count = 0;
-    // Validate email
-    try {
-        $profile->validateEmail($email);
-    } catch (Exception $e) {
-        echo 'Error: ' . $e->getMessage();
-        $count++;
+    if (!empty($email)) {
+        // Validate email
+        try {
+            $profile->validateEmail($email);
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+            $count++;
+        }
+        // Confirm email
+        try {
+            $profile->confirmEmail($email, $email_confirm);
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+            $count++;
+        }
+        // Check if an email is in use
+        try {
+            $profile->checkEmail($email);
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+            $count++;
+        }
     }
-    // Confirm email
-    try {
-        $profile->confirmEmail($email, $email_confirm);
-    } catch (Exception $e) {
-        echo 'Error: ' . $e->getMessage();
-        $count++;
-    }
-    // Check if an email is in use
-    try {
-        $profile->checkEmail($email);
-    } catch (Exception $e) {
-        echo 'Error: ' . $e->getMessage();
-        $count++;
-    }
-    // Validate password
-    try {
-        $profile->validatePassword($password);
-    } catch (Exception $e) {
-        echo 'Error: ' . $e->getMessage();
-        $count++;
-    }
-    // Confirm password
-    try {
-        $profile->confirmPassword($password, $password_confirm);
-    } catch (Exception $e) {
-        echo 'Error: ' . $e->getMessage();
-        $count++;
+    if (!empty($password)) {
+        // Validate password
+        try {
+            $profile->validatePassword($password);
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+            $count++;
+        }
+        // Confirm password
+        try {
+            $profile->confirmPassword($password, $password_confirm);
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+            $count++;
+        }
     }
     if ($count == 0) {
-        echo empty($fname);
+        echo 'Determine fields to update';
     } else {
         echo 'Incorrect or missing data';
         unset($profile);
