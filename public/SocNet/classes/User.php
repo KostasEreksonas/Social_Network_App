@@ -1,7 +1,7 @@
 <?php
 require_once 'Database.php';
 class User {
-    private $db;
+    protected $db;
 
     public function __construct() {
         /*
@@ -116,6 +116,7 @@ class User {
             throw new Exception('No such user exists<br>');
         } else {
             foreach ($result as $row) {
+                $id = $row->id;
                 $firstName = $row->first_name;
                 $lastName = $row->last_name;
                 $username = $row->username;
@@ -129,6 +130,7 @@ class User {
             } elseif ($deactivated == 1) {
                 throw new Exception("User deactivated. Contact system administrator for profile reactivation.<br>");
             } else {
+                $_SESSION['id'] = $id;
                 $_SESSION['firstName'] = $firstName;
                 $_SESSION['lastName'] = $lastName;
                 $_SESSION['username'] = $username;

@@ -63,7 +63,20 @@ if (isset($_POST["logout"])) {
         }
     }
     if ($count == 0) {
-        echo 'Determine fields to update';
+        //echo 'Determine fields to update';
+        if (!empty($fname)) {
+            $profile->updateColumn('first_name', $fname, $_SESSION['id']);
+        }
+        if (!empty($lname)) {
+            $profile->updateColumn('last_name', $lname, $_SESSION['id']);
+        }
+        if (!empty($email)) {
+            $profile->updateColumn('email', $email, $_SESSION['id']);
+        }
+        if (!empty($password)) {
+            $hashedPassword = $profile->hashPassword($password);
+            $profile->updateColumn('password', $hashedPassword, $_SESSION['id']);
+        }
     } else {
         echo 'Incorrect or missing data';
         unset($profile);

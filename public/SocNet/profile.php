@@ -25,6 +25,10 @@ require_once("handlers/profile_handler.php");
         <th>Current Information</th>
     </tr>
     <tr>
+        <td>ID</td>
+        <td><?php echo $_SESSION["id"];?></td>
+    </tr>
+    <tr>
         <td>First Name</td>
         <td><?php echo $_SESSION["firstName"];?></td>
     </tr>
