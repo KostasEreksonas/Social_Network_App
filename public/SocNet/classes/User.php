@@ -74,13 +74,13 @@ class User {
         /*
          * Create an username for registering user
          */
-        $username = $fname . '_' . $lname;
+        $username = strtolower($fname) . '_' . strtolower($lname);
         // Check if username already exists
         $this->db->query("SELECT * FROM users WHERE username = '$username'");
         $this->db->execute();
         $count = $this->db->rowCount();
         if ($count > 0) {
-            $username = $fname . '_' . $lname . '_' . $count;
+            $username = strtolower($fname) . '_' . strtolower($lname) . '_' . $count;
         }
         return $username;
     }
@@ -90,7 +90,7 @@ class User {
         /*
          * Registers an user to the database
          */
-        $sql = "INSERT INTO `users` VALUES (NULL, '$fname', '$lname', '$username', '$email', '$password', DEFAULT)";
+        $sql = "INSERT INTO `users` VALUES (NULL, '$fname', '$lname', '$username', '$email', '$password', DEFAULT, DEFAULT, DEFAULT)";
         $this->db->query($sql);
         try {
             $this->db->execute();
