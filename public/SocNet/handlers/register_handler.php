@@ -56,6 +56,8 @@ if (isset($_POST["register_button"])) {
 if ($count == 0) {
     $hashedPassword = $user->hashPassword($password);
     $user->registerUser($fname, $lname, $email, $hashedPassword);
+    unset($user);
 } else {
     echo 'Incorrect or missing data.';
+    unset($user);
 }

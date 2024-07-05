@@ -1,6 +1,5 @@
 <?php
 require_once 'handlers/login_handler.php';
-require_once 'classes/Database.php';
 ?>
 
 <form action="login.php" method="POST">

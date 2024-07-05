@@ -69,7 +69,8 @@ class User {
         return password_hash($password, PASSWORD_DEFAULT);
     }
 
-    public function registerUser($fname, $lname, $email, $password) : void {
+    public function registerUser($fname, $lname, $email, $password) : void
+    {
         /*
          * Registers an user to the database
          */
@@ -80,6 +81,28 @@ class User {
             echo 'New record created successfully<br>';
         } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
+        }
+    }
+
+    public function login($email, $password) : void
+    {
+        /*
+         * Login user to the application
+         */
+        $sql = "SELECT password FROM users WHERE email = '$email'";
+        $this->db->query($sql);
+        $result = $this->db->resultSet();
+        if ($this->db->rowCount() == 0) {
+            throw new Exception('No such user exists<br>');
+        } else {
+            foreach ($result as $row) {
+                $dbPassword = $row->password;
+            }
+            if (!password_verify($password, $dbPassword)) {
+                throw new Exception("Invalid username and/or password.<br>");
+            } else {
+                header('Location: home.php');
+            }
         }
     }
 }
