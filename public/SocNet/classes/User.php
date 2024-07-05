@@ -122,6 +122,8 @@ class User {
             }
             if (!password_verify($password, $dbPassword)) {
                 throw new Exception("Invalid username and/or password.<br>");
+            } elseif ($deactivated == 1) {
+                throw new Exception("User deactivated. Contact system administrator for profile reactivation.<br>");
             } else {
                 $_SESSION['firstName'] = $firstName;
                 $_SESSION['lastName'] = $lastName;
