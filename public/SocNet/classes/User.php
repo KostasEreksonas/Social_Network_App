@@ -105,21 +105,31 @@ class User {
         /*
          * Login user to the application
          */
-        $sql = "SELECT username, password FROM users WHERE email = '$email'";
+        $sql = "SELECT * FROM users WHERE email = '$email'";
         $this->db->query($sql);
         $result = $this->db->resultSet();
         if ($this->db->rowCount() == 0) {
             throw new Exception('No such user exists<br>');
         } else {
             foreach ($result as $row) {
+                $firstName = $row->first_name;
+                $lastName = $row->last_name;
                 $username = $row->username;
                 $dbPassword = $row->password;
+                $profilePic = $row->profile_pic;
+                $deactivated = $row->deactivated;
+                $createdAt = $row->created_at;
             }
             if (!password_verify($password, $dbPassword)) {
                 throw new Exception("Invalid username and/or password.<br>");
             } else {
+                $_SESSION['firstName'] = $firstName;
+                $_SESSION['lastName'] = $lastName;
                 $_SESSION['username'] = $username;
                 $_SESSION['email'] = $email;
+                $_SESSION['profilePic'] = $profilePic;
+                $_SESSION['deactivated'] = $deactivated;
+                $_SESSION['createdAt'] = $createdAt;
                 header('Location: home.php');
             }
         }

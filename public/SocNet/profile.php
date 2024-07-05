@@ -20,6 +20,7 @@ echo 'This is place for your profile, '. $_SESSION['username'];
     <input type="submit" name="delete" value="Delete Profile">
 </form>
 <h1>Current Information</h1>
+<img src="<?php echo $_SESSION["profilePic"]; ?>" alt="Profile Picture">
 <table>
     <tr>
         <th></th>
@@ -27,11 +28,11 @@ echo 'This is place for your profile, '. $_SESSION['username'];
     </tr>
     <tr>
         <td>First Name</td>
-        <td>PLACEHOLDER</td>
+        <td><?php echo $_SESSION["firstName"];?></td>
     </tr>
     <tr>
         <td>Last Name</td>
-        <td>PLACEHOLDER</td>
+        <td><?php echo $_SESSION["lastName"];?></td>
     </tr>
     <tr>
         <td>Username</td>
@@ -42,8 +43,16 @@ echo 'This is place for your profile, '. $_SESSION['username'];
         <td><?php echo $_SESSION["email"];?></td>
     </tr>
     <tr>
+        <td>Deactivated</td>
+        <td><?php echo $_SESSION["deactivated"];?></td>
+    </tr>
+    <tr>
+        <td>Created At</td>
+        <td><?php echo $_SESSION["createdAt"];?></td>
+    </tr>
+    <tr>
         <td>Profile Picture</td>
-        <td>PLACEHOLDER</td>
+        <td><?php echo $_SESSION["profilePic"];?></td>
     </tr>
 </table>
 <h1>Update User Information</h1>
