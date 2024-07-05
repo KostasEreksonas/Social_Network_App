@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS `users` (
     `username` VARCHAR(255),
     `email` VARCHAR(255),
     `password` VARCHAR(255),
+    `profile_pic` VARCHAR(255) DEFAULT 'assets/img/defaults/head_carrot.png',
+    `deactivated` BIT DEFAULT 0,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
-
