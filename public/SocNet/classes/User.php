@@ -113,7 +113,7 @@ class User {
         $this->db->query($sql);
         $result = $this->db->resultSet();
         if ($this->db->rowCount() == 0) {
-            throw new Exception('No such user exists<br>');
+            throw new Exception('No such user exist<br>');
         } else {
             foreach ($result as $row) {
                 $id = $row->id;
