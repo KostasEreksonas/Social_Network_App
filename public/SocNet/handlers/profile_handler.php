@@ -2,15 +2,19 @@
 require_once '../SocNet/classes/Profile.php';
 
 // Program buttons
-if (isset($_POST["logout"])) {
+if (isset($_POST["logout"])) {  // Logout
     session_destroy();
     header("location: ../SocNet/login.php");
-} elseif (isset($_POST["home"])) {
+} elseif (isset($_POST["home"])) { // Go to home page
     header("location: ../SocNet/home.php");
-} elseif (isset($_POST["deactivate"])) {
-    echo 'Destroy session, logout and set profile deactivation bit on a database to 1';
-} elseif (isset($_POST["delete"])) {
-    echo 'Destroy session, logout and delete user info from the database';
+} elseif (isset($_POST["deactivate"])) { // Deactivate user
+    $profile = new Profile();
+    $profile->deactivateUser($_SESSION['id']);
+    unset($profile);
+} elseif (isset($_POST["delete"])) { // Delete user
+    $profile = new Profile();
+    $profile->deleteUser($_SESSION['id']);
+    unset($profile);
 } elseif (isset($_POST["update_button"])) {
     // Get form data
     $fname = $_POST["upd_fname"];
@@ -19,6 +23,7 @@ if (isset($_POST["logout"])) {
     $email_confirm = $_POST["upd_email_confirm"];
     $password = $_POST["upd_password"];
     $password_confirm = $_POST["upd_password_confirm"];
+    $profile_pic = $_POST["upd_profile_pic"];
     // Instantiate new profile object
     $profile = new Profile();
     // Count exceptions
@@ -77,6 +82,11 @@ if (isset($_POST["logout"])) {
             $hashedPassword = $profile->hashPassword($password);
             $profile->updateColumn('password', $hashedPassword, $_SESSION['id']);
         }
+        if ($profile_pic !== 'none') {
+            $path = 'assets/img/defaults/head_' . $profile_pic . '.png';
+            $profile->updateColumn('profile_pic', $path, $_SESSION['id']);
+        }
+        unset($profile);
     } else {
         echo 'Incorrect or missing data';
         unset($profile);

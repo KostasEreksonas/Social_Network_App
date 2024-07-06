@@ -18,7 +18,7 @@ require_once("handlers/profile_handler.php");
 </form>
 <h1>Current Information</h1>
 <h4>Profile Picture</h4>
-<img src="<?php echo $_SESSION["profilePic"]; ?>" alt="Profile Picture">
+<img src="<?php echo $_SESSION["profile_pic"]; ?>" alt="Profile Picture">
 <table>
     <tr>
         <th></th>
@@ -30,11 +30,11 @@ require_once("handlers/profile_handler.php");
     </tr>
     <tr>
         <td>First Name</td>
-        <td><?php echo $_SESSION["firstName"];?></td>
+        <td><?php echo $_SESSION["first_name"];?></td>
     </tr>
     <tr>
         <td>Last Name</td>
-        <td><?php echo $_SESSION["lastName"];?></td>
+        <td><?php echo $_SESSION["last_name"];?></td>
     </tr>
     <tr>
         <td>Username</td>
@@ -50,11 +50,11 @@ require_once("handlers/profile_handler.php");
     </tr>
     <tr>
         <td>Created At</td>
-        <td><?php echo $_SESSION["createdAt"];?></td>
+        <td><?php echo $_SESSION["created_at"];?></td>
     </tr>
     <tr>
         <td>Profile Picture</td>
-        <td><?php echo $_SESSION["profilePic"];?></td>
+        <td><?php echo $_SESSION["profile_pic"];?></td>
     </tr>
 </table>
 <h1>Update User Information</h1>
@@ -71,6 +71,14 @@ require_once("handlers/profile_handler.php");
     <input type="password" id="password" name="upd_password" placeholder="Password"><br>
     <label for="password_repeat">Confirm new password: </label><br>
     <input type="password" id="password_repeat" name="upd_password_confirm" placeholder="Confirm Password"><br>
+    <label for="upd_profile_pic">Choose a profile picture color to update:</label><br>
+    <select name="upd_profile_pic" id="upd_profile_pic">
+        <option value="none">None</option>
+        <option value="emerald">Emerald</option>
+        <option value="pomegranate">Pomegranate</option>
+        <option value="red">Red</option>
+        <option value="turqoise">Turqoise</option>
+    </select><br>
     <input type="submit" name="update_button" value="Update">
     <input type="submit" name="deactivate" value="Deactivate Profile">
     <input type="submit" name="delete" value="Delete Profile">

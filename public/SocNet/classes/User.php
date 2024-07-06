@@ -131,13 +131,13 @@ class User {
                 throw new Exception("User deactivated. Contact system administrator for profile reactivation.<br>");
             } else {
                 $_SESSION['id'] = $id;
-                $_SESSION['firstName'] = $firstName;
-                $_SESSION['lastName'] = $lastName;
+                $_SESSION['first_name'] = $firstName;
+                $_SESSION['last_name'] = $lastName;
                 $_SESSION['username'] = $username;
                 $_SESSION['email'] = $email;
-                $_SESSION['profilePic'] = $profilePic;
+                $_SESSION['profile_pic'] = $profilePic;
                 $_SESSION['deactivated'] = $deactivated;
-                $_SESSION['createdAt'] = $createdAt;
+                $_SESSION['created_at'] = $createdAt;
                 header('Location: home.php');
             }
         }
