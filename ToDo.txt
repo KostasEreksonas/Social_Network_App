@@ -1,0 +1,13 @@
+1. Create a database diagram (copy schema from rksoc with slight modifications)
+2. Create Rest API endpoint specification on SwaggerHub.
+3. Create microservices architecture schema (8 functions, 8 microservices).
+Microservice structure:
+User->RestAPI->Load_balancer->5*Service->Service_db.
+4. Configure application servers using Docker according to the previous
+schema.
+5. On RestAPI server create `routes.php` file to map specified endpoints to
+configured servers.
+6. Create template php files on corresponding microservices.
+7. Create databases according to the schema.
+8. Fill the databases with sample data.
+9. Program CRUD operations on sample data, display results in the browser.
