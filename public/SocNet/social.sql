@@ -16,20 +16,12 @@ CREATE TABLE IF NOT EXISTS `users` (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS `messages` (
-    `id` INT AUTO_INCREMENT NOT NULL,
-    `user_to` VARCHAR(255) NOT NULL,
-    `user_from` VARCHAR(255) NOT NULL,
-    `body` TEXT NOT NULL,
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id)
-);
-
 CREATE TABLE IF NOT EXISTS `posts` (
     `id` INT NOT NULL,
     `body` TEXT NOT NULL,
-    `added_by` VARCHAR(255) NOT NULL,
-    `user_to` varchar(60) NOT NULL,
+    `added_by` INT,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id)
+    `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (added_by) REFERENCES users(id)
 );
