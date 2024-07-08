@@ -3,7 +3,8 @@ require_once 'Database.php';
 class User {
     protected $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         /*
          * Constructor method
          * Creates a database instance
