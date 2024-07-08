@@ -17,6 +17,29 @@ class Profile extends User {
         }
     }
 
+    public function updateUsername($fname, $lname, $id) : string
+    {
+        /*
+         * Updates username after changing first name, last name or both
+         */
+        $sql = "SELECT username FROM users WHERE id = '$id'";
+        $this->db->query($sql);
+        $str = $this->db->single()->username;
+        $arr = explode("_", $str);
+        if (empty($fname) && empty($lname)) {
+            $username = $str;
+        } elseif (!empty($fname) && empty($lname)) {
+            $arr[0] = strtolower($fname);
+            $username = $arr[0] . '_' . $arr[1];
+        } elseif (empty($fname) && !empty($lname)) {
+            $arr[1] = strtolower($lname);
+            $username = $arr[0] . '_' . $arr[1];
+        } elseif (!empty($lname) && !empty($fname)) {
+            $username = $this->createUsername($fname, $lname);
+        }
+        return $username;
+    }
+
     public function deactivateUser($id) : void
     {
         /*

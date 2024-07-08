@@ -69,6 +69,10 @@ if (isset($_POST["logout"])) {  // Logout
     }
     if ($count == 0) {
         //echo 'Determine fields to update';
+        $username = $profile->updateUsername($fname, $lname, $_SESSION['id']);
+        if (!empty($fname) || !empty($lname)) {
+            $profile->updateColumn('username', $username, $_SESSION['id']);
+        }
         if (!empty($fname)) {
             $profile->updateColumn('first_name', $fname, $_SESSION['id']);
         }

@@ -94,7 +94,7 @@ class User {
         /*
          * Registers an user to the database
          */
-        $sql = "INSERT INTO `users` VALUES (NULL, '$fname', '$lname', '$username', '$email', '$password', DEFAULT, DEFAULT, DEFAULT)";
+        $sql = "INSERT INTO `users` VALUES (NULL, '$fname', '$lname', '$username', '$email', '$password', DEFAULT, DEFAULT, DEFAULT, DEFAULT)";
         $this->db->query($sql);
         try {
             $this->db->execute();
