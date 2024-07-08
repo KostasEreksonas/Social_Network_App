@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `profile_pic` VARCHAR(255) DEFAULT 'assets/img/defaults/head_carrot.png',
     `deactivated` BIT DEFAULT 0,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	`updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
