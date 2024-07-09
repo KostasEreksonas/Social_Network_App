@@ -1,7 +1,6 @@
 <?php
 session_start();
-require_once("handlers/form_handler.php");
-echo 'This is place for your posts, '. $_SESSION['username'];
+require_once("handlers/posts_handler.php");
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +14,11 @@ echo 'This is place for your posts, '. $_SESSION['username'];
     <input type="submit" name="home" value="Home">
     <input type="submit" name="logout" value="Logout">
 </form>
-
+<h1>Create a post</h1>
+<form action="posts.php" method="POST">
+    <label for="post">Write a post: </label><br>
+    <textarea name="post" id="post" cols="30" rows="10"></textarea><br>
+    <input type="submit" name="post_button" value="Create post">
+</form>
 </body>
 </html>
