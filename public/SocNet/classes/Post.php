@@ -5,6 +5,10 @@ class Post {
 
     public function __construct ()
     {
+        /*
+         * Constructor method
+         * Creates a database instance
+         */
         $this->db = new Database();
     }
 
@@ -26,15 +30,33 @@ class Post {
     public function getPosts($username) : void
     {
         /*
-         * Returns all posts for an user
+         * Returns all posts from an user
          */
-        $sql = "SELECT `body` FROM posts where `added_by`='$username'";
+        $sql = "SELECT `id`,`body` FROM posts where `added_by`='$username'";
         $this->db->query($sql);
         try {
             $result = $this->db->resultSet();
             foreach ($result as $row) {
-                echo '<p class="p-border">' . $row->body . '</p><br>';
+                $id = $row->id;
+                echo '<form class="post_box" action="update_post.php" method="POST">';
+                echo '<p class="p-border">' . $row->body . ' <input type="submit" name="' . $id . '" value="Update"> <input type="submit" name="' . $id . '" value="Delete"></p><br>';
+                echo '</form>';
             }
+        } catch (PDOException $e) {
+            echo $sql . '<br>' . $e->getMessage();
+        }
+    }
+
+    public function updatePost($id, $body) : void
+    {
+        /*
+         * Updates a post
+         */
+        $sql = "UPDATE `posts` SET `body`='$body' WHERE `id`='$id'";
+        $this->db->query($sql);
+        try {
+            $this->db->execute();
+            echo 'Post updated successfully<br>';
         } catch (PDOException $e) {
             echo $sql . '<br>' . $e->getMessage();
         }

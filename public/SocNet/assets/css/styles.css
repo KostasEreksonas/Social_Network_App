@@ -28,9 +28,13 @@ h1, h4 {
     text-align: center;
 }
 
+.post_box {
+    margin: 0.1%;
+}
+
 .p-border {
     border: 1px solid black;
-    margin: 0.2%;
+    margin: 1%;
     padding: 1%;
     display: inline-block;
 }
