@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("handlers/update_handler.php");
+require_once("handlers/posts_handler.php");
 ?>
 
 <!DOCTYPE html>

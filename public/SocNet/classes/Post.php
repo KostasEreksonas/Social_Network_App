@@ -77,4 +77,11 @@ class Post {
         }
         return $result;
     }
+
+    public function deletePost($id) : void
+    {
+        /*
+         * Delete a post
+         */
+    }
 }
