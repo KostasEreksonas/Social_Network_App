@@ -23,6 +23,8 @@ if (isset($_POST["logout"])) {
     $post->getPosts($username);
     echo 'Post count: ' . $post->countPosts($username);
 } elseif (isset($_POST["update_button"])) {
-$body = $_POST["update_post"];
-$post->updatePost($post_id, $body);
+    $body = $_POST["update_post"];
+    $post->updatePost($post_id, $body);
+} elseif (isset($_POST['delete_button'])) {
+    $post->deletePost($post_id);
 }

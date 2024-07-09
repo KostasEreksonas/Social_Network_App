@@ -39,8 +39,9 @@ class Post {
             foreach ($result as $row) {
                 $id = $row->id;
                 echo '<form class="post_box" action="update_post.php" method="POST">';
-                echo '<p class="p-border">' . $row->body . ' <input type="submit" name="' . $id . '" value="Update"> <input type="submit" name="' . $id . '" value="Delete"></p><br>';
-                echo '</form>';
+                echo '<p class="p-border">' . $row->body . ' <input type="submit" name="' . $id . '" value="Update"></p><br></form>';
+                echo '<form class="post_box" action="delete_post.php" method="POST">';
+                echo '<p class="p-border">' . $row->body . ' <input type="submit" name="' . $id . '" value="Delete"></p><br></form>';
             }
         } catch (PDOException $e) {
             echo $sql . '<br>' . $e->getMessage();
@@ -83,5 +84,13 @@ class Post {
         /*
          * Delete a post
          */
+        $sql = "DELETE FROM `posts` WHERE `id`='$id'";
+        $this->db->query($sql);
+        try {
+            $this->db->execute();
+            echo 'Post deleted<br>';
+        } catch (PDOException $e) {
+            echo $sql . '<br>' . $e->getMessage();
+        }
     }
 }
