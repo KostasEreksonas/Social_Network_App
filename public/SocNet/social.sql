@@ -17,11 +17,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 );
 
 CREATE TABLE IF NOT EXISTS `posts` (
-    `id` INT NOT NULL,
+    `id` INT AUTO_INCREMENT NOT NULL,
     `body` TEXT NOT NULL,
-    `added_by` INT,
+    `added_by` VARCHAR(255) NOT NULL,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    FOREIGN KEY (added_by) REFERENCES users(id)
+    PRIMARY KEY (id)
 );
