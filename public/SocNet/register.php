@@ -6,6 +6,7 @@ require_once 'handlers/register_handler.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <title>Social Network</title>
 </head>
 <body>

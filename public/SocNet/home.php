@@ -8,6 +8,7 @@ echo 'Hello, ' . $_SESSION["username"];
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <title>Home</title>
 </head>
 <body>

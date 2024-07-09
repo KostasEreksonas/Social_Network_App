@@ -7,9 +7,13 @@ require_once("handlers/posts_handler.php");
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <title>Posts</title>
 </head>
 <body>
+<form action="posts.php" method="POST">
+    <input type="submit" name="show_posts" value="Show Posts">
+</form>
 <form action="posts.php" method="POST">
     <input type="submit" name="home" value="Home">
     <input type="submit" name="logout" value="Logout">

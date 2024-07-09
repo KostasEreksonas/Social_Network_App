@@ -23,27 +23,36 @@ class Post {
         }
     }
 
-    public function getPosts() : string
+    public function getPosts($username) : void
     {
         /*
          * Returns all posts for an user
          */
-        return 'posts';
+        $sql = "SELECT `body` FROM posts where `added_by`='$username'";
+        $this->db->query($sql);
+        try {
+            $result = $this->db->resultSet();
+            foreach ($result as $row) {
+                echo '<p class="p-border">' . $row->body . '</p><br>';
+            }
+        } catch (PDOException $e) {
+            echo $sql . '<br>' . $e->getMessage();
+        }
     }
 
-    public function getPost() : string
-    {
-        /*
-         * Return a specific post from an user based on condition(s)
-         */
-        return 'post';
-    }
-
-    public function countPosts() : int
+    public function countPosts($username) : int
     {
         /*
          * Return count of user posts
          */
-        return 1;
+        $sql = "SELECT body FROM posts WHERE `added_by`='$username'";
+        $this->db->query($sql);
+        try {
+            $this->db->execute();
+            $result = $this->db->rowCount();
+        } catch (PDOException $e) {
+            echo $sql . '<br>' . $e->getMessage();
+        }
+        return $result;
     }
 }

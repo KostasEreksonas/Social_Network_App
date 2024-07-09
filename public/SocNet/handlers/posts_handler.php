@@ -1,5 +1,6 @@
 <?php
 require_once '../SocNet/classes/Post.php';
+$post = new Post();
 if (isset($_POST["logout"])) {
     session_destroy();
     header("location: ../SocNet/login.php");
@@ -9,6 +10,9 @@ if (isset($_POST["logout"])) {
     // Get post data
     $body = $_POST["post"];
     $username = $_SESSION["username"];
-    $post = new Post();
     $post->createPost($body, $username);
+} elseif (isset($_POST["show_posts"])) {
+    $username = $_SESSION["username"];
+    $post->getPosts($username);
+    echo 'Post count: ' . $post->countPosts($username);
 }
