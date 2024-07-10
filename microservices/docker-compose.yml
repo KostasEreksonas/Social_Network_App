@@ -1,0 +1,113 @@
+services:
+  friends:
+    build:
+      context: ./friends/php/
+      dockerfile: Dockerfile
+    environment:
+      - PORT=80
+    deploy:
+      replicas: 5
+    networks:
+      - loadbalancing
+  friends-load-balancer:
+    build:
+      context: ./friends/nginx/
+      dockerfile: Dockerfile
+    container_name: load_balancer_friends
+    ports:
+      - "81:80"
+    networks:
+      - loadbalancing
+    depends_on:
+      - friends
+
+  messages:
+    build:
+      context: ./messages/php/
+      dockerfile: Dockerfile
+    environment:
+      - PORT=80
+    deploy:
+      replicas: 5
+    networks:
+      - loadbalancing
+  messages-load-balancer:
+    build:
+      context: ./messages/nginx/
+      dockerfile: Dockerfile
+    container_name: load_balancer_messages
+    ports:
+      - "82:80"
+    networks:
+      - loadbalancing
+    depends_on:
+      - messages
+
+  posts:
+    build:
+      context: ./posts/php/
+      dockerfile: Dockerfile
+    environment:
+      - PORT=80
+    deploy:
+      replicas: 5
+    networks:
+      - loadbalancing
+  posts-load-balancer:
+    build:
+      context: ./posts/nginx/
+      dockerfile: Dockerfile
+    container_name: load_balancer_posts
+    ports:
+      - "83:80"
+    networks:
+      - loadbalancing
+    depends_on:
+      - posts
+
+  users:
+    build:
+      context: ./users/php/
+      dockerfile: Dockerfile
+    environment:
+      - PORT=80
+    deploy:
+      replicas: 5
+    networks:
+      - loadbalancing
+  users-load-balancer:
+    build:
+      context: ./users/nginx/
+      dockerfile: Dockerfile
+    container_name: load_balancer_users
+    ports:
+      - "84:80"
+    networks:
+      - loadbalancing
+    depends_on:
+      - users
+
+  profiles:
+    build:
+      context: ./profiles/php/
+      dockerfile: Dockerfile
+    environment:
+      - PORT=80
+    deploy:
+      replicas: 5
+    networks:
+      - loadbalancing
+  profiles-load-balancer:
+    build:
+      context: ./profiles/nginx/
+      dockerfile: Dockerfile
+    container_name: load_balancer_profiles
+    ports:
+      - "85:80"
+    networks:
+      - loadbalancing
+    depends_on:
+      - profiles
+
+networks:
+  loadbalancing:
