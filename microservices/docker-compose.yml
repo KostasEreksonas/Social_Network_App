@@ -20,6 +20,19 @@ services:
       - loadbalancing
     depends_on:
       - friends
+    friends-db:
+      image: mysql
+      command: --mysql-native-password=ON
+      restart: always
+      ports:
+        - 3307:3306
+      volumes:
+        - ./db:/var/lib/mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: friends
+        MYSQL_USER: devuser
+        MYSQL_PASSWORD: devpass
 
   messages:
     build:
@@ -42,6 +55,19 @@ services:
       - loadbalancing
     depends_on:
       - messages
+    messages-db:
+      image: mysql
+      command: --mysql-native-password=ON
+      restart: always
+      ports:
+        - 3308:3306
+      volumes:
+        - ./db:/var/lib/mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: messages
+        MYSQL_USER: devuser
+        MYSQL_PASSWORD: devpass
 
   posts:
     build:
@@ -64,6 +90,19 @@ services:
       - loadbalancing
     depends_on:
       - posts
+    posts-db:
+      image: mysql
+      command: --mysql-native-password=ON
+      restart: always
+      ports:
+        - 3309:3306
+      volumes:
+        - ./db:/var/lib/mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: posts
+        MYSQL_USER: devuser
+        MYSQL_PASSWORD: devpass
 
   users:
     build:
@@ -86,6 +125,19 @@ services:
       - loadbalancing
     depends_on:
       - users
+    users-db:
+      image: mysql
+      command: --mysql-native-password=ON
+      restart: always
+      ports:
+        - 3310:3306
+      volumes:
+        - ./db:/var/lib/mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: users
+        MYSQL_USER: devuser
+        MYSQL_PASSWORD: devpass
 
   profiles:
     build:
@@ -108,6 +160,19 @@ services:
       - loadbalancing
     depends_on:
       - profiles
+    profiles-db:
+      image: mysql
+      command: --mysql-native-password=ON
+      restart: always
+      ports:
+        - 3311:3306
+      volumes:
+        - ./db:/var/lib/mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: profiles
+        MYSQL_USER: devuser
+        MYSQL_PASSWORD: devpass
 
 networks:
   loadbalancing:
